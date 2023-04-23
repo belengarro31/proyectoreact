@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
-import { getProducts } from '../../asyncMock'
-import ItemList from '../ItemList/ItemList'
+import { getProducts } from '/asyncMock.jsx'
+import ItemList from "../ItemList/ItemList"
     
 
 
