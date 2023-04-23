@@ -1,3 +1,4 @@
+//import { useParams } from "react-router-dom"
 import {useState, useEffect } from 'react'
 import { getProductById } from '../../../asyncMock'
 import ItemDetail from '../ItemDetail/ItemDetail'

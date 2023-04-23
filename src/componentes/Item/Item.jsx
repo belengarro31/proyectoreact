@@ -1,4 +1,5 @@
 
+import ItemCount from "../ItemCount/ItemCount"
 
 const Item = ({id, name, price, img, description}) =>{
 
@@ -15,10 +16,11 @@ const Item = ({id, name, price, img, description}) =>{
             <section>
                 <p className="Info">
                     Precio: ${price}
+                    <ItemCount initial={1} stock={10} onAdd={(quantity)=>console.log('Cantidad agregada', quantity)}/>
                 </p>
             </section>
             <footer className="ItemFooter">
-                <button className="Option">Ver detalle</button>
+              
             </footer>
         </article>
     )
