@@ -12,19 +12,14 @@ const products = [
     {id:'3', name: "Prepizza",  price: 150, img:"/public/Prepizza.png", description: "Descripcion de producto" }
 ]
 
-export const getProducts = ()=>{
-    return new Promise((resolve) =>{
+
+
+export const asyncMock = (id) =>{
+    return new Promise((res, rej)=>{
+
         setTimeout(()=>{
-            resolve(products)
-        }, 500)
-    })
+            res(!id ? products : products.find(product=> product.id === id))
+        }, 1000)
+    }) 
 }
 
-export const getProductById =(productId) =>{
-    return new Promise((resolve)=>{
-        setTimeout(()=>{
-            resolve(products.find(prod=>prod.id===productId))
-        }, 500)
-
-    })
-}

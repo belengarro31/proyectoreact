@@ -8,11 +8,24 @@ import ItemListContainer from './componentes/ItemListContainer/ItemListContainer
 import ItemCount from './componentes/ItemCount/ItemCount'
 import Item from './componentes/Item/Item'
 import ItemDetailContainer from './componentes/ItemDetailContainer/ItemDetailContainer'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 function App() {
  
   return (
-    <div className="App">
+    <BrowserRouter>
+    <NavBar />
+    <Routes>
+      <Route path='/' element={<ItemListContainer />} />
+      <Route path='/category/:category' element={<ItemListContainer />} />
+      <Route path='/detalle/:prod' element={<ItemDetailContainer />} />
+
+      {/* <Route path='*' element={<NotFound/>} /> */}
+      
+    </Routes>
+  </BrowserRouter>
+)
+    /*<div className="App">
       <NavBar />
       <ItemListContainer greeting={'Bienvenidos'} /> 
      
@@ -20,7 +33,7 @@ function App() {
        <ItemDetailContainer/>
       </div>
       
-  );
+  );*/
 }
 
 export default App

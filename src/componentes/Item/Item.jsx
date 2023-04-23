@@ -1,7 +1,8 @@
 
 import ItemCount from "../ItemCount/ItemCount"
+import { Link } from "react-router-dom";
 
-const Item = ({id, name, price, img, description}) =>{
+export const Item = ({id, name, price, img, description}) =>{
 
     return(
         <article className="CardItem">
