@@ -1,6 +1,13 @@
+
 import ItemCount from "../ItemCount/ItemCount"
 
-const ItemDetail=({id, name, img, price, description}) =>{
+const ItemDetail=({productos}) =>{
+    console.log(productos)
+    const {id, name, price, img, description} = productos
+    const onAdd = (cantidad) => {
+        console.log(cantidad);
+    }
+
     return(
         <article className="CardItem">
             <header className="Header">
@@ -16,11 +23,11 @@ const ItemDetail=({id, name, img, price, description}) =>{
                     Descriptcion: {description} 
                 </p>
                 <p className="Info">
-                    Precio: ${price} 
+                    Precio: $ {price} 
                 </p>
              </section>
              <footer className="ItemFooter">
-                <ItemCount />
+                <ItemCount initial={1}stock={10}onAdd={onAdd}/>
 
               </footer>
         </article>

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 import { asyncMock } from '../../../asyncMock.jsx'
-//import  asyncMock  from '../../../asyncMock'
 import  { useParams } from "react-router-dom";
 import ItemList from "../ItemList/ItemList"
 
@@ -20,9 +19,9 @@ const ItemListContainer = ({greeting}) => {
             .finally(() => setIsLoading(false))
         }else{
           asyncMock()
-          .then(resultado => { setProducts(resultado.filter(products=>products.category === category)) })
-          .catch(error => console.log(error))
-          .finally(() => setIsLoading(false))
+            .then(resultado => { setProducts(resultado.filter(productos=>productos.category === category)) })
+            .catch(error => console.log(error))
+            .finally(() => setIsLoading(false))
         }
       }, [category])
     

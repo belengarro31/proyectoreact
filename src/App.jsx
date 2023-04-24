@@ -18,22 +18,13 @@ function App() {
     <Routes>
       <Route path='/' element={<ItemListContainer />} />
       <Route path='/category/:category' element={<ItemListContainer />} />
-      <Route path='/detalle/:prod' element={<ItemDetailContainer />} />
+      <Route path='/detail/:prod' element={<ItemDetailContainer />} />
 
-      {/* <Route path='*' element={<NotFound/>} /> */}
-      
+            
     </Routes>
   </BrowserRouter>
 )
-    /*<div className="App">
-      <NavBar />
-      <ItemListContainer greeting={'Bienvenidos'} /> 
-     
-      <CartWidget />
-       <ItemDetailContainer/>
-      </div>
-      
-  );*/
+  
 }
 
 export default App

@@ -4,20 +4,20 @@ import { asyncMock } from '../../../asyncMock'
 import ItemDetail from '../ItemDetail/ItemDetail'
 
 const ItemDetailContainer = () => {
-    const [products, setProduct] = useState(null)
+    const [products, setProduct] = useState({})
 
     const { prod } = useParams()
 
     useEffect(()=>{
-        asyncMock('1')
+        asyncMock(prod)
            .then(reponse=>{
                 setProduct(reponse)
            })
-    }, [])
+    }, [prod])
 
     return(
         <div className='ItemDetailContainer'>
-            <ItemDetail {...products} />        
+            <ItemDetail productos={products} />        
         </div>
     )
 
