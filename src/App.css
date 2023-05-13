@@ -1,10 +1,11 @@
-#root {
+/*#root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-}
+}*/
 
+/* usar position absolute  */
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -42,7 +43,14 @@
 }
 
 img{
+  border-radius: 10px;
   height: 8rem;
+  width: 10rem;
+ 
+}
+
+.ItemImg{
+  justify-content: center;
 }
 
 .cart-widget{
@@ -60,6 +68,8 @@ img{
   flex-direction: column;
   background-color: rgb(92, 92, 92);
   margin-top: 20px;
+  width: 18rem;
+  align-items: center;
 }
 
 .Controls{

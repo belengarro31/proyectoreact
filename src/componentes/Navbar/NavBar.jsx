@@ -5,31 +5,25 @@ import { Link, NavLink } from "react-router-dom"
 const NavBar = () => {
     return (
         <div className='navbar'>
-            
+            {/* <Link to='/' className="logo">
+                <div className="logo">
+                    {/* <img src='/public/fondonav.jpg' alt="logoelaguila" /> */}
+                {/* </div> */}
+            {/* </Link> */}
             <nav>
-                <NavLink to='/category/nosotros' className={ ({isActive})=> isActive ? 'isActive' : 'isNotActive'}>Nosotros</NavLink>
-                <NavLink to='/category/panificacion'className={ ({isActive})=> isActive ? 'isActive' : 'isNotActive'}>Panificacion</NavLink>
-                <NavLink to='/category/pasteleria'className={ ({isActive})=> isActive ? 'isActive' : 'isNotActive'}>Pasteleria</NavLink>
+                <div className="logo">
+                <img src="/public/fondonav.jpg" alt="" />
+                </div>
+                {/* <div class="menu fw-bold"> */}
+                    <NavLink to='/category/nosotros' className={ ({isActive})=> isActive ? 'isActive' : 'isNotActive'}>Nosotros</NavLink>
+                    <NavLink to='/category/panificacion'className={ ({isActive})=> isActive ? 'isActive' : 'isNotActive'}>Panificacion</NavLink>
+                    <NavLink to='/category/pasteleria'className={ ({isActive})=> isActive ? 'isActive' : 'isNotActive'}>Pasteleria</NavLink>
+                {/* </div> */}
             </nav>
             <CartWidget />
         </div>
     )
 }
 
-/*const NavBar = () => {
-    return(
-        <nav>
-            <h3>Ecommerce Panificacion</h3>
-            <div>
-                <button>Home</button>
-                <button>Nosotros</button>
-                <button>Panificacion</button>
-                <button>Pasteleria</button>
-            </div>
-              
-        </nav>
-
- )
-}*/
 
 export default NavBar

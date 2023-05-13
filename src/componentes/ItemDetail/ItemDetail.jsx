@@ -1,11 +1,23 @@
 
+import { useState } from "react"
 import ItemCount from "../ItemCount/ItemCount"
+import { CartContex } from "../../context/CartContex"
+
 
 const ItemDetail=({productos}) =>{
-    console.log(productos)
+
+    const [isCant, setIsCant] = useState(false)
+
+    //console.log(productos)
     const {id, name, price, img, description} = productos
+   
+    const {addToCart} = useCartContext()
+
     const onAdd = (cantidad) => {
-        console.log(cantidad);
+        console.log(cantidad)
+
+
+        setIsCant(true)
     }
 
     return(
@@ -27,8 +39,19 @@ const ItemDetail=({productos}) =>{
                 </p>
              </section>
              <footer className="ItemFooter">
-                <ItemCount initial={1}stock={10}onAdd={onAdd}/>
-
+               <>
+                
+                
+                    {
+                    !isCant ?      
+                       <ItemCount initial={1}stock={10}onAdd={onAdd}/>
+                       :
+                       <>
+                       <button>Terminar compra</button>
+                       <button>Seguir comprando</button>
+                       </>
+                    }
+                </>
               </footer>
         </article>
     )

@@ -16,6 +16,7 @@ return(
             <button className="Button" onClick={()=> onAdd(contador)} disabled={!stock}>
                 Agregar al carrito
             </button>
+            
         </div>
     </div>
 )
