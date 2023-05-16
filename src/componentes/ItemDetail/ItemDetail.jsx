@@ -1,8 +1,8 @@
 
 import { useState } from "react"
 import ItemCount from "../ItemCount/ItemCount"
-import { CartContex } from "../../context/CartContex"
-
+import { CartContex,  useCartContext } from "../../context/CartContex"
+import { Link } from "react-router-dom"
 
 const ItemDetail=({productos}) =>{
 
@@ -14,11 +14,13 @@ const ItemDetail=({productos}) =>{
     const {addToCart} = useCartContext()
 
     const onAdd = (cantidad) => {
-        console.log(cantidad)
-
+        addToCart({...productos, cantidad})
+        //console.log(cantidad)
 
         setIsCant(true)
     }
+
+    
 
     return(
         <article className="CardItem">
@@ -47,9 +49,18 @@ const ItemDetail=({productos}) =>{
                        <ItemCount initial={1}stock={10}onAdd={onAdd}/>
                        :
                        <>
+                       <Link to={"/cart"}>
                        <button>Terminar compra</button>
+                       </Link>
+                       <Link to={"/"}>
                        <button>Seguir comprando</button>
+                       </Link>
+
+                       
                        </>
+
+                     
+                       
                     }
                 </>
               </footer>

@@ -16,10 +16,21 @@ export const CartContexProvider = ({children})=>{
             newProduct
         ])
     }
+
+    //cantidad total de productos
+    //precio total de la compra
+    //eliminar por item
+
+    //VaciarCarrito
+    const vaciarCarrito=() =>{
+        setCartList([])
+    }
+
     return (
         <CartContex.Provider value={{
             cartList,
-            addToCart
+            addToCart,
+            vaciarCarrito
         }}>
             {children}
         </CartContex.Provider>

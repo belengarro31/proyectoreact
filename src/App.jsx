@@ -10,6 +10,8 @@ import Item from "./componentes/Item/Item";
 import ItemDetailContainer from "./componentes/ItemDetailContainer/ItemDetailContainer";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { CartContexProvider } from "./context/CartContex";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { CartConteiner } from "./componentes/CartContainer/CartContainer";
 
 function App() {
   return (
@@ -21,6 +23,7 @@ function App() {
           <Route path="/" element={<ItemListContainer />} />
           <Route path="/category/:category" element={<ItemListContainer />} />
           <Route path="/detail/:prod" element={<ItemDetailContainer />} />
+          <Route path="/cart" element={<CartConteiner/>} />
         </Routes>
       </main>
     </BrowserRouter>
