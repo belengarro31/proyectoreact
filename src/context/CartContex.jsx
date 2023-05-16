@@ -18,8 +18,18 @@ export const CartContexProvider = ({children})=>{
     }
 
     //cantidad total de productos
+
     //precio total de la compra
+    const totalCarrito = () => {
+        return cartList.reduce(
+          (total, producto) => total + producto.price * producto.cantidad,
+          0
+        );
+      };
+
+
     //eliminar por item
+
 
     //VaciarCarrito
     const vaciarCarrito=() =>{
@@ -30,7 +40,8 @@ export const CartContexProvider = ({children})=>{
         <CartContex.Provider value={{
             cartList,
             addToCart,
-            vaciarCarrito
+            vaciarCarrito,
+            totalCarrito
         }}>
             {children}
         </CartContex.Provider>
