@@ -17,7 +17,7 @@ export const CartContexProvider = ({children})=>{
         ])
     }
 
-    //cantidad total de productos
+    
 
     //precio total de la compra
     const totalCarrito = () => {
@@ -29,7 +29,17 @@ export const CartContexProvider = ({children})=>{
 
 
     //eliminar por item
-
+    const borrarCantidad = (id) => {
+        const index = cartList.findIndex((prod) => prod.id === id);
+        if (index !== -1) {
+          const nuevoCarritoLista = [...cartList];
+          if (nuevoCarritoLista[index].cantidad > 1) {
+            nuevoCarritoLista[index].cantidad -= 1; //resto una unidad al producto
+            setCartList(nuevoCarritoLista);
+            toast("😢 Eliminaste una unidad del producto")        
+        }
+    }
+}
 
     //VaciarCarrito
     const vaciarCarrito=() =>{
@@ -41,7 +51,8 @@ export const CartContexProvider = ({children})=>{
             cartList,
             addToCart,
             vaciarCarrito,
-            totalCarrito
+            totalCarrito,
+            borrarCantidad
         }}>
             {children}
         </CartContex.Provider>
