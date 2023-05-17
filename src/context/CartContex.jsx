@@ -34,9 +34,9 @@ export const CartContexProvider = ({children})=>{
         if (index !== -1) {
           const nuevoCarritoLista = [...cartList];
           if (nuevoCarritoLista[index].cantidad > 1) {
-            nuevoCarritoLista[index].cantidad -= 1; //resto una unidad al producto
+            nuevoCarritoLista[index].cantidad -= 1; 
             setCartList(nuevoCarritoLista);
-            toast("😢 Eliminaste una unidad del producto")        
+            toast("Eliminaste una unidad")        
         }
     }
 }
