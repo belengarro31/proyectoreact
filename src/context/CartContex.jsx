@@ -11,13 +11,26 @@ export const CartContexProvider = ({children})=>{
     const [cartList, setCartList] = useState([])
 
     const addToCart =(newProduct)=>{
-        setCartList([
+        const index = cartList.findIndex(prod=>newProduct.id ===prod.id)
+
+        if(index===-1){
+
+            setCartList([
             ...cartList,
             newProduct
         ])
+    } else{
+        cartList[index].cantidad += newProduct.cantidad
+        setCartList([...cartList])
+    }
     }
 
-    
+    //cantidad total de productos
+    const cantidadTotal = () => {
+        return cartList.reduce(
+            (total, producto) => total += producto.cantidad,0
+            );
+    };
 
     //precio total de la compra
     const totalCarrito = () => {
@@ -36,11 +49,10 @@ export const CartContexProvider = ({children})=>{
           if (nuevoCarritoLista[index].cantidad > 1) {
             nuevoCarritoLista[index].cantidad -= 1; 
             setCartList(nuevoCarritoLista);
-            toast("Eliminaste una unidad")        
+                 
         }
     }
 }
-
     //VaciarCarrito
     const vaciarCarrito=() =>{
         setCartList([])
@@ -52,6 +64,7 @@ export const CartContexProvider = ({children})=>{
             addToCart,
             vaciarCarrito,
             totalCarrito,
+            cantidadTotal,
             borrarCantidad
         }}>
             {children}

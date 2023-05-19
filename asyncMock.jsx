@@ -1,5 +1,5 @@
 
-const products = [    
+/* const productos = [    
     {
         id: '1',
         name: "Pan",
@@ -20,8 +20,9 @@ export const asyncMock = (id) =>{
     return new Promise((res, rej)=>{
 
         setTimeout(()=>{
-            res(!id ? products : products.find(product=> product.id === id))
+            res(!id ? productos : productos.find(product=> product.id === id))
         }, 1000)
     }) 
 }
 
+ */

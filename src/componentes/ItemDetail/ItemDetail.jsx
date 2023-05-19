@@ -8,45 +8,39 @@ const ItemDetail=({productos}) =>{
 
     const [isCant, setIsCant] = useState(false)
 
-    //console.log(productos)
-    const {id, name, price, img, description} = productos
-   
+  
     const {addToCart} = useCartContext()
 
     const onAdd = (cantidad) => {
         addToCart({...productos, cantidad})
-        //console.log(cantidad)
 
         setIsCant(true)
     }
 
-    
-
     return(
+        <div key={productos.id}>
         <article className="CardItem">
             <header className="Header">
                 <h2 className="className">
-                    {name}
+                    {productos.name}
                 </h2>
              </header>
             
-                <img src={img} alt={name} className="ItemImg"/>
+                <img src={productos.img}  className="ItemImg"/>
              
              <section>
                 <p className="Info">
-                    Descriptcion: {description} 
+                    Descriptcion: {productos.description} 
                 </p>
                 <p className="Info">
-                    Precio: $ {price} 
+                    Precio: $ {productos.price} 
                 </p>
              </section>
              <footer className="ItemFooter">
                <>
-                
-                
-                    {
+                 {
                     !isCant ?      
-                       <ItemCount initial={1}stock={10}onAdd={onAdd}/>
+                       <ItemCount initial={1}stock={10}  onAdd={onAdd}/>
                        :
                        <>
                        <Link to={"/cart"}>
@@ -56,16 +50,14 @@ const ItemDetail=({productos}) =>{
                        <button>Seguir comprando</button>
                        </Link>
 
-                       
-                       </>
-
-                     
-                       
+                    </>
                     }
                 </>
               </footer>
         </article>
+        </div>
     )
 }
+//initial={1}stock={10}
 
 export default ItemDetail

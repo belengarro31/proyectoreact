@@ -1,40 +1,59 @@
 import { useEffect, useState } from "react"
-import { asyncMock } from '../../../asyncMock.jsx'
+//import { asyncMock } from '../../../asyncMock.jsx'
 import  { useParams } from "react-router-dom";
 import ItemList from "../ItemList/ItemList"
-
-
+import Loading from "../Loading/Loading.jsx";
+import {collection,  getFirestore, getDocs, where, query} from "firebase/firestore"
 
 const ItemListContainer = ({greeting}) => {
-    const [products, setProducts] = useState([])
+    const [productos, setproductos] = useState([])
     const [isLoading, setIsLoading] = useState(true)
 
     const {category} = useParams()
     
     useEffect(() => {
-        if (!category) {
-         asyncMock()
-            .then(resultado => { setProducts(resultado) })
-            .catch(error => console.log(error))
-            .finally(() => setIsLoading(false))
-        }else{
-          asyncMock()
-            .then(resultado => { setProducts(resultado.filter(productos=>productos.category === category)) })
-            .catch(error => console.log(error))
-            .finally(() => setIsLoading(false))
-        }
+      const dbFirestore = getFirestore()
+      const queryCollection= collection(dbFirestore, "productos")
+
+      if (!category){
+          getDocs(queryCollection)
+            .then(res=>setproductos(res.docs.map(product=>({id: product.id, ...product.data()} )) ))
+            .catch(error=>console.log(error))
+            .finally(()=>setIsLoading(false))
+      }else{
+        const queryCollectionFiltered = query(queryCollection,where("category", "==", category))
+
+        getDocs(queryCollectionFiltered)
+          .then(res=>setproductos(res.docs.map(product=>({id: product.id, ...product.data()} )) ))
+          .catch(error=>console.log(error))
+          .finally(()=>setIsLoading(false))
+      }
       }, [category])
-    
-    
-    return (
+
+      return (
         <>
           {isLoading ?
-            <h2>Cargando...</h2>
+            <Loading/>
             :
-            <ItemList products={products} />
+            <ItemList productos={productos} />
           }
         </>
       )
 }
 
 export default ItemListContainer
+        //if (!category) {
+        // asyncMock()
+        //    .then(resultado => { setproductos(resultado) })
+        //    .catch(error => console.log(error))
+        //    .finally(() => setIsLoading(false))
+        //}else{
+        //  asyncMock()
+        //    .then(resultado => { setproductos(resultado.filter(productos=>productos.category === category)) })
+        //    .catch(error => console.log(error))
+        //    .finally(() => setIsLoading(false))
+        //}
+      //}, [category])
+    
+    
+    
