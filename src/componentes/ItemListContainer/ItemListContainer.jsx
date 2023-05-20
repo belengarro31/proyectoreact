@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react"
-//import { asyncMock } from '../../../asyncMock.jsx'
 import  { useParams } from "react-router-dom";
 import ItemList from "../ItemList/ItemList"
 import Loading from "../Loading/Loading.jsx";
@@ -42,18 +41,7 @@ const ItemListContainer = ({greeting}) => {
 }
 
 export default ItemListContainer
-        //if (!category) {
-        // asyncMock()
-        //    .then(resultado => { setproductos(resultado) })
-        //    .catch(error => console.log(error))
-        //    .finally(() => setIsLoading(false))
-        //}else{
-        //  asyncMock()
-        //    .then(resultado => { setproductos(resultado.filter(productos=>productos.category === category)) })
-        //    .catch(error => console.log(error))
-        //    .finally(() => setIsLoading(false))
-        //}
-      //}, [category])
+       
     
     
     

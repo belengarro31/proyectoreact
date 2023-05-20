@@ -1,6 +1,5 @@
 import { useParams } from "react-router-dom"
 import {useState, useEffect } from 'react'
-//import { asyncMock } from '../../../asyncMock'
 import ItemDetail from '../ItemDetail/ItemDetail'
 import Loading from "../Loading/Loading"
 import { doc, getDoc, getFirestore } from "firebase/firestore"

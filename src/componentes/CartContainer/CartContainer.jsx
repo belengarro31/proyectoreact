@@ -2,18 +2,18 @@ import { Link } from "react-router-dom";
 import { useCartContext } from "../../context/CartContex";
 import { addDoc, collection, getFirestore } from "firebase/firestore";
 import { useState } from "react";
-//import {validateForm } from "../Validacion/formValidation";
+
 
 
 export const CartConteiner = () =>{
-    const [dataForm, setDataForm]=useState({
+     const [dataForm, setDataForm]=useState({
         name:"",
         phone:"",
         email:""
-    }) 
+    })  
     const{cartList, vaciarCarrito, totalCarrito, borrarCantidad, cantidadTotal} = useCartContext()
 
-    const generarOrden=(evt)=>{
+     const generarOrden=(evt)=>{
         evt.preventDefault()
         const order = {}
         order.buyer=dataForm
@@ -25,16 +25,16 @@ export const CartConteiner = () =>{
 
         addDoc(ordersCollection, order)
         .then(resp=>console.log(resp))
-    }
+    } 
 
-    const handleOnChange = (evt)=>{
+      const handleOnChange = (evt)=>{
         console.log('nombre del input',evt.target.name)
         console.log('valor del input',evt.target.value)
         setDataForm({
             ...dataForm,
             [evt.target.name]: evt.target.value
         })
-        } 
+        }    
     
     if (cantidadTotal() === 0 ) {
         return(
@@ -58,9 +58,10 @@ export const CartConteiner = () =>{
                 <div className="cartTotal">
                         <h3>Total a pagar: $ { totalCarrito() } </h3>
                 </div>
-            <button onClick={vaciarCarrito} className="btn btn-outline-danger">Vaciar carrito</button>  
-
-             <form classname="formFinal" onSubmit={generarOrden}>
+            <button onClick={vaciarCarrito} className="btn btn-outline-danger">Vaciar carrito</button>
+              
+           
+             {  <form classname="formFinal" onSubmit={generarOrden}>
             <input 
                     type='text' 
                     name="name" 
@@ -83,9 +84,9 @@ export const CartConteiner = () =>{
                     value={dataForm.email} 
                     placeholder="ingrese el email" 
                 /> 
- 
-                <button className="btn btn-outline-danger">Generar orden</button> 
-               
-                </form>
+  
+                <button className="btn btn-outline-danger">Generar orden</button>  
+               </form>  }
+                
             </div>    
     )}

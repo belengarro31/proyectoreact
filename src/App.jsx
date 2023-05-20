@@ -13,6 +13,7 @@ import { CartContexProvider } from "./context/CartContex";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { CartConteiner } from "./componentes/CartContainer/CartContainer";
 
+
 function App() {
   return (
       <CartContexProvider>
@@ -24,6 +25,7 @@ function App() {
           <Route path="/category/:category" element={<ItemListContainer />} />
           <Route path="/detail/:prod" element={<ItemDetailContainer />} />
           <Route path="/cart" element={<CartConteiner/>} />
+         
         </Routes>
       </main>
     </BrowserRouter>

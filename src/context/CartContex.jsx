@@ -47,12 +47,12 @@ export const CartContexProvider = ({children})=>{
         if (index !== -1) {
           const nuevoCarritoLista = [...cartList];
           if (nuevoCarritoLista[index].cantidad > 1) {
-            nuevoCarritoLista[index].cantidad -= 1; 
-            setCartList(nuevoCarritoLista);
-                 
+                nuevoCarritoLista[index].cantidad -= 1; 
+                setCartList(nuevoCarritoLista);
+                    
+            }
         }
     }
-}
     //VaciarCarrito
     const vaciarCarrito=() =>{
         setCartList([])
