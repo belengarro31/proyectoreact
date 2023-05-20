@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useCartContext } from "../../context/CartContex";
 import { addDoc, collection, getFirestore } from "firebase/firestore";
 import { useState } from "react";
-
+//import {validateForm } from "../Validacion/formValidation";
 
 
 export const CartConteiner = () =>{
@@ -85,6 +85,7 @@ export const CartConteiner = () =>{
                 /> 
  
                 <button className="btn btn-outline-danger">Generar orden</button> 
+               
                 </form>
             </div>    
     )}
