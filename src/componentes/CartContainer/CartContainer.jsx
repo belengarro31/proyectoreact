@@ -1,19 +1,21 @@
-import { Link } from "react-router-dom";
+import {  Link } from "react-router-dom";
 import { useCartContext } from "../../context/CartContex";
 import { addDoc, collection, getFirestore } from "firebase/firestore";
 import { useState } from "react";
-
+import Swal from 'sweetalert2'
 
 
 export const CartConteiner = () =>{
-     const [dataForm, setDataForm]=useState({
+    const [id, setId]= useState("")
+
+    const [dataForm, setDataForm]=useState({
         name:"",
         phone:"",
         email:""
     })  
     const{cartList, vaciarCarrito, totalCarrito, borrarCantidad, cantidadTotal} = useCartContext()
 
-     const generarOrden=(evt)=>{
+    const generarOrden=(evt)=>{
         evt.preventDefault()
         const order = {}
         order.buyer=dataForm
@@ -24,10 +26,31 @@ export const CartConteiner = () =>{
         const ordersCollection=collection(dbFirestore, "orders")
 
         addDoc(ordersCollection, order)
-        .then(resp=>console.log(resp))
+        .then (({id}) => {
+            Swal.fire({
+            icon: 'success',
+            title: 'Muchas Gracias',
+            text: `Tu pedido id: ${id} está en preparación`,
+            confirmButtonColor: '#6CACE4',
+            background: '#FFFFFE',
+            color: '#120080'
+            })
+        })
+        .catch(err=>console.log(err))
+        .finally(()=>{
+            setDataForm({
+                name:"",
+                phone:"",
+                email:""
+            })
+            setTimeout(()=>{
+                vaciarCarrito()
+
+            }, 5000)
+        })
     } 
 
-      const handleOnChange = (evt)=>{
+    const handleOnChange = (evt)=>{
         console.log('nombre del input',evt.target.name)
         console.log('valor del input',evt.target.value)
         setDataForm({
@@ -46,6 +69,7 @@ export const CartConteiner = () =>{
     return(
         
         <div>
+            {id.length!==0 && <h3>El id del producto es:{id}</h3>}
             {cartList.map((prod)=>(
                 <div className="w-50">
                     <img className="w-25" src={prod.img} alt="imagen" key="cart-container"/>
@@ -59,9 +83,9 @@ export const CartConteiner = () =>{
                         <h3>Total a pagar: $ { totalCarrito() } </h3>
                 </div>
             <button onClick={vaciarCarrito} className="btn btn-outline-danger">Vaciar carrito</button>
-              
-           
-             {  <form classname="formFinal" onSubmit={generarOrden}>
+        
+         
+            {  <form classname="formFinal" onSubmit={generarOrden}>
             <input 
                     type='text' 
                     name="name" 
@@ -84,9 +108,9 @@ export const CartConteiner = () =>{
                     value={dataForm.email} 
                     placeholder="ingrese el email" 
                 /> 
-  
+
                 <button className="btn btn-outline-danger">Generar orden</button>  
-               </form>  }
+            </form>  } 
                 
             </div>    
     )}
