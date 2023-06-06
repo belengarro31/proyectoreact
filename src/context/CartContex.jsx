@@ -46,6 +46,11 @@ export const CartContexProvider = ({children})=>{
         const index = cartList.findIndex((prod) => prod.id === id);
         if (index !== -1) {
           const nuevoCarritoLista = [...cartList];
+            if (nuevoCarritoLista[index].cantidad==1) {
+                setCartList(cartList.filter((prod) => prod.id != id));
+                return;
+            }
+
           if (nuevoCarritoLista[index].cantidad > 1) {
                 nuevoCarritoLista[index].cantidad -= 1; 
                 setCartList(nuevoCarritoLista);
